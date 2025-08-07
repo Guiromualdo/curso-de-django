@@ -1,0 +1,12 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+ <p><a href="{% url 'topic' topic.id %}">Voltar para o Tópico</a></p>
+
+ <p>Adicione sua anotação abaixo:</p>
+ <form action="{% url 'new_entry' topic.id %}" method="post">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <button type="submit">Adicionar Anotação</button>
+ </form>
+{% endblock content %}
