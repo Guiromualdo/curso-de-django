@@ -12,6 +12,11 @@ def Logout_view(request):
 
 def register(request):
     """Registra um novo usuário."""
+    if request.user.is_authenticated:
+        # Se o usuário já estiver autenticado, redireciona para a página inicial.
+        return HttpResponseRedirect(reverse('index'))
+
+
     if request.method != 'POST':
         # Exibe um formulário em branco.
         form = UserCreationForm()

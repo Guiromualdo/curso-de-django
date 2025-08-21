@@ -1,12 +1,26 @@
 {% extends "learning_logs/base.html" %}
 
-{% block content %}
- <p><a href="{% url 'topic' topic.id %}">Voltar para o Tópico</a></p>
+{% load bootstrap3 %}
 
- <p>Adicione sua anotação abaixo:</p>
- <form action="{% url 'new_entry' topic.id %}" method="post">
-     {% csrf_token %}
-     {{ form.as_p }}
-     <button type="submit">Adicionar Anotação</button>
- </form>
+
+
+{% block header %}
+<h1><a href="{% url 'topic' topic.id %}">{{ topic }}</a></h1>
+{% endblock header %}
+
+
+
+{% block content %}
+
+
+<h3>Adicione sua anotação abaixo:</h3>
+
+
+<form action="{% url 'new_entry' topic.id %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Adicionar Anotação</button>
+    {% endbuttons %}
+</form>
 {% endblock content %}

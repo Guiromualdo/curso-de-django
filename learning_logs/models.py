@@ -1,9 +1,11 @@
 from django.db import models # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 class Topic(models.Model):
     """um assunto sobre o qual usuario esta aprendendo."""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey( User, on_delete=models.CASCADE)
 
     def __str__(self):
         """Devolve uma apresentação em string do modelo."""
